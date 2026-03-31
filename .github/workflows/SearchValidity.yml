@@ -56,7 +56,5 @@ jobs:
     - name: Add Vulkan SDK tools to PATH
       run: echo "C:\VulkanSDK\1.4.341.1\Bin" >> $env:GITHUB_PATH
 
-    - name: Search for glslangValidator
-      run: |
-        Get-ChildItem -Path D:\a\OpenXMB\OpenXMB\vcpkg\installed -Recurse -Filter glslangValidator*
-        glslangValidator --version
+    - name: Verify glslangValidator
+      run: glslangValidator --version

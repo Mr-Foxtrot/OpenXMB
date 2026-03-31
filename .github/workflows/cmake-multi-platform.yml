@@ -51,9 +51,10 @@ jobs:
     - name: Install VCPKG and required dependencies.
       run: >
         git clone https://github.com/microsoft/vcpkg.git
-        .\vcpkg\bootstrap-vcpkg.bat
-        .\vcpkg integrate install
-        .\vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext --triplet x64-windows
+        cd vcpkg
+        bootstrap-vcpkg.bat
+        vcpkg integrate install
+        vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext --triplet x64-windows
         
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

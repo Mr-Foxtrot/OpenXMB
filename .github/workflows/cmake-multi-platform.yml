@@ -54,7 +54,7 @@ jobs:
         cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg integrate install
-        vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext --triplet x64-windows
+        vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext zlib:x64-windows gettext:x64-windows pkgconf:x64-windows libpng:x64-windows vulkan-loader:x64-windows --triplet x64-windows 
         
     - name: Setup Ninja
       uses: ashutoshvarma/setup-ninja@v1.1 
@@ -69,7 +69,7 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         $env:VCPKG_FORCE_SYSTEM_BINARIES="ON"
-        cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DGETTEXT_MSGMERGE_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgmerge.exe" -DGETTEXT_MSGFMT_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgfmt.exe"
+        cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DGETTEXT_MSGMERGE_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgmerge.exe" -DGETTEXT_MSGFMT_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgfmt.exe" -DVulkan_INCLUDE_DIR="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/include" -DVulkan_LIBRARY="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/lib/vulkan-1.lib"
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).

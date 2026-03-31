@@ -57,4 +57,4 @@ jobs:
         vcpkg install glslang
 
     - name: Search for glslangValidator
-      run: dir ${{github.workspace}}\vcpkg\installed /s | findstr glslangValidator
+      run: Get-ChildItem -Path D:\a\OpenXMB\OpenXMB\vcpkg\installed -Recurse -Filter glslangValidator*

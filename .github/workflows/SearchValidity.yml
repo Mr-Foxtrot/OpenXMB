@@ -56,7 +56,7 @@ jobs:
       run: .\VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
 
     - name: Add Vulkan SDK Bin to PATH
-      run: echo "C:\VulkanSDK\1.2.182.1\Bin" >> $env:GITHUB_PATH
+      run: echo "C:\VulkanSDK\1.4.341.1\Bin" >> $env:GITHUB_PATH
 
     - name: Verify glslangValidator
       run: glslangValidator --version

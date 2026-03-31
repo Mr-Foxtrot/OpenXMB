@@ -54,7 +54,10 @@ jobs:
         cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg integrate install
-        vcpkg install glslang
+        vcpkg install vulkan-sdk:x64-windows
+        echo "${{github.workspace}}\vcpkg\installed\x64-windows\tools\glslang" >> $env:GITHUB_PATH
 
     - name: Search for glslangValidator
-      run: Get-ChildItem -Path D:\a\OpenXMB\OpenXMB\vcpkg\installed -Recurse -Filter glslangValidator*
+      run: |
+        Get-ChildItem -Path D:\a\OpenXMB\OpenXMB\vcpkg\installed -Recurse -Filter glslangValidator*
+        glslangValidator --version

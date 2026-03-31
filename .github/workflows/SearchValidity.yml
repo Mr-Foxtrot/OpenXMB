@@ -50,12 +50,11 @@ jobs:
 
     - name: Install VCPKG and required dependencies.
       run: |
-        git clone https://github.com/microsoft/vcpkg.git
-        cd vcpkg
-        bootstrap-vcpkg.bat
-        vcpkg integrate install
-        vcpkg install vulkan-sdk:x64-windows
-        echo "${{github.workspace}}\vcpkg\installed\x64-windows\tools\glslang" >> $env:GITHUB_PATH
+        Invoke-WebRequest "https://sdk.lunarg.com/sdk/download/1.4.341.1/windows/vulkansdk-windows-X64-1.4.341.1.exe" -OutFile VulkanSDK.exe
+        Start-Process VulkanSDK.exe -ArgumentList "/S" -Wait
+
+    - name: Add Vulkan SDK tools to PATH
+      run: echo "C:\VulkanSDK\1.4.341.1\Bin" >> $env:GITHUB_PATH
 
     - name: Search for glslangValidator
       run: |

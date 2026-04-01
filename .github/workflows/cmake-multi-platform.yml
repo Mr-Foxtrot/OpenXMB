@@ -56,9 +56,6 @@ jobs:
         vcpkg integrate install
         vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext zlib:x64-windows gettext:x64-windows pkgconf:x64-windows libpng:x64-windows --triplet x64-windows 
   
-    - name: Verify
-      run: glslangValidator --version
-  
     - name: Setup Ninja
       uses: ashutoshvarma/setup-ninja@v1.1 
 

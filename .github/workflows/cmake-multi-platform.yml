@@ -93,8 +93,7 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         $env:VCPKG_FORCE_SYSTEM_BINARIES="ON"
-        cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DGETTEXT_MSGMERGE_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgmerge.exe" -DGETTEXT_MSGFMT_EXECUTABLE="$env:GITHUB_WORKSPACE/vcpkg/installed/x64-windows/tools/gettext/bin/msgfmt.exe" 
-
+        cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build build

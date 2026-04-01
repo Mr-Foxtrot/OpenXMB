@@ -58,6 +58,8 @@ jobs:
   
     - name: Setup Ninja
       uses: ashutoshvarma/setup-ninja@v1.1 
+      with:
+          version: 1.11.0
 
     - name: Add vcpkg tools to PATH
       run: |

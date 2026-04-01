@@ -60,7 +60,12 @@ jobs:
       uses: ashutoshvarma/setup-ninja@v1.1 
       with:
           version: 1.11.0
-
+          
+    - name: Force install gettext via chocolatey
+      run: |
+        choco install gettext -y
+        refreshenv
+        
     - name: Add vcpkg tools to PATH
       run: |
         echo "${{github.workspace}}/vcpkg/installed/x64-windows/tools/gettext" >> "$GITHUB_PATH"

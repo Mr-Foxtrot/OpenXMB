@@ -41,22 +41,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set reusable strings
-      # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
-      id: strings
-      shell: bash
+    - name: Test
       run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        choco install gettext -y
 
-    - name: Download Vulkan SDK
-      run: |
-        Invoke-WebRequest "https://sdk.lunarg.com/sdk/download/1.4.341.1/windows/vulkansdk-windows-X64-1.4.341.1.exe" -OutFile VulkanSDK.exe
-
-    - name: Install Vulkan SDK silently
-      run: .\VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
-
-    - name: Add Vulkan SDK Bin to PATH
-      run: echo "C:\VulkanSDK\1.4.341.1\Bin" >> $env:GITHUB_PATH
-
-    - name: Verify glslangValidator
-      run: glslangValidator --version

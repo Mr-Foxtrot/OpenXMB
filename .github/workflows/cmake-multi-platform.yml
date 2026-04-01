@@ -54,7 +54,7 @@ jobs:
         cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg integrate install
-        vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext zlib:x64-windows gettext:x64-windows pkgconf:x64-windows libpng:x64-windows --triplet x64-windows 
+        vcpkg install sdl2 sdl2-image sdl2-mixer ffmpeg freetype glm fmt gettext zlib:x64-windows gettext:x64-windows vulkan:x64-windows pkgconf:x64-windows libpng:x64-windows --triplet x64-windows 
   
     - name: Setup Ninja
       uses: ashutoshvarma/setup-ninja@v1.1 
@@ -63,6 +63,8 @@ jobs:
       run: |
         echo "${{github.workspace}}/vcpkg/installed/x64-windows/tools/gettext" >> "$GITHUB_PATH"
         echo "${{github.workspace}}/vcpkg" >> "$GITHUB_PATH"
+        echo "${{github.workspace}}/vcpkg/installed/x64-windows/tools/glslang" >> "$GITHUB_PATH"
+        echo "${{github.workspace}}/vcpkg/installed/x64-windows/tools/vulkan" >> "$GITHUB_PATH"
 
     - name: Download Vulkan SDK
       run: |
